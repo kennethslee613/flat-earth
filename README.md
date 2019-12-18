@@ -1,2 +1,2 @@
-# flat-earth
-The Earth is flat
+# Flat Earth
+What if the Earth was flat?
