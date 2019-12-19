@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/kennethslee613/flat-earth/issues"
   },
-  "homepage": "https://github.com/kennethslee613/flat-earth#readme"
+  "homepage": "https://github.com/kennethslee613/flat-earth#readme",
+  "dependencies": {
+    "three.js": "^0.77.1"
+  }
 }
