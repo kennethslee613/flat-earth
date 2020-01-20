@@ -15,7 +15,7 @@ function init() {
     geometry = new THREE.CylinderGeometry(300, 300, 1, 100);
     var texture = new THREE.TextureLoader().load('img/earth.jpg');
     texture.crossOrigin = true;
-    material = new THREE.MeshBasicMaterial({
+    material = new THREE.MeshPhongMaterial({
         map: texture
     });
     material.needsUpdate = true;
@@ -25,14 +25,17 @@ function init() {
     scene.add(earth);
 
     geometry = new THREE.SphereGeometry(10, 32, 32);
-    material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+    material = new THREE.MeshPhongMaterial( {color: 0xffff00} );
     material.needsUpdate = true;
     sun = new THREE.Mesh(geometry, material);
     sun.position.y = 75;
     sun.position.x = 125;
     sun.position.z = 125;
     scene.add(sun);
-
+    
+    var sunlight = new THREE.PointLight(0xffffff, 10, 500, 2);
+    sunlight.position.set(0, 100, 175);
+    scene.add(sunlight);
 
     camera.position.x = 0;
     camera.position.y = 500;
