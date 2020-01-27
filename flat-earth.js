@@ -52,6 +52,12 @@ function init() {
     controls = new THREE.OrbitControls( camera, renderer.domElement );
     controls.maxPolarAngle = Math.PI / 2 - 0.1;
     controls.update();
+
+    window.addEventListener('resize', () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+    })
 }
  
 function animate() {
