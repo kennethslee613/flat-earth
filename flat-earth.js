@@ -24,18 +24,18 @@ function init() {
     earth = new THREE.Mesh(geometry, material);
     scene.add(earth);
 
-    geometry = new THREE.SphereGeometry(10, 20, 20);
+    geometry = new THREE.SphereGeometry(5, 20, 20);
     material = new THREE.MeshPhongMaterial( {color: 0xffff00, emissive: 0xffff00} );
     material.needsUpdate = true;
     sun = new THREE.Mesh(geometry, material);
-    sun.position.y = 75;
+    sun.position.y = 100;
     sun.position.x = 150;
     sun.position.z = 0;
     scene.add(sun);
 
     material = new THREE.MeshPhongMaterial( {color: 0xf5f3ce} );
     moon = new THREE.Mesh(geometry, material);
-    moon.position.y = 75;
+    moon.position.y = 125;
     moon.position.x = -150;
     moon.position.z = 0;
     scene.add(moon);
@@ -58,8 +58,8 @@ function animate() {
     requestAnimationFrame(animate);
 
     const vector = new THREE.Vector3(0, 75, 0);
-    rotateAboutPoint(sun, vector, vector.normalize(), 0.02, false);
-    rotateAboutPoint(moon, vector, vector.normalize(), 0.02, false);
+    rotateAboutPoint(sun, vector, vector.normalize(), Math.PI * 2 / 365, false);
+    rotateAboutPoint(moon, vector, vector.normalize(), 6.07042967 / 365, false);
 
     controls.update();
 
