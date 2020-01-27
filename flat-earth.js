@@ -13,7 +13,7 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     geometry = new THREE.CylinderGeometry(300, 300, 1, 100);
-    var texture = new THREE.TextureLoader().load('/img/earth.jpg');
+    var texture = new THREE.TextureLoader().load('img/earth.jpg');
     texture.crossOrigin = true;
     material = new THREE.MeshPhongMaterial({
         map: texture
