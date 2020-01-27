@@ -1,5 +1,5 @@
-var camera, scene, renderer;
-var geometry, material, earth, sun, sunlight;
+var camera, scene, renderer, controls;
+var geometry, material, earth, sun, moon, sunlight;
  
 init();
 animate();
@@ -24,35 +24,44 @@ function init() {
     earth = new THREE.Mesh(geometry, material);
     scene.add(earth);
 
-    geometry = new THREE.SphereGeometry(10, 32, 32);
-    material = new THREE.MeshPhongMaterial( {color: 0xffff00} );
+    geometry = new THREE.SphereGeometry(10, 20, 20);
+    material = new THREE.MeshPhongMaterial( {color: 0xffff00, emissive: 0xffff00} );
     material.needsUpdate = true;
     sun = new THREE.Mesh(geometry, material);
     sun.position.y = 75;
-    sun.position.x = 125;
-    sun.position.z = 125;
+    sun.position.x = 150;
+    sun.position.z = 0;
     scene.add(sun);
+
+    material = new THREE.MeshPhongMaterial( {color: 0xf5f3ce} );
+    moon = new THREE.Mesh(geometry, material);
+    moon.position.y = 75;
+    moon.position.x = -150;
+    moon.position.z = 0;
+    scene.add(moon);
     
-    var sunlight = new THREE.PointLight(0xffffff, 10, 500, 2);
-    sunlight.position.set(0, 100, 175);
-    scene.add(sunlight);
+    var sunlight = new THREE.PointLight(0xffffff, 3, 500, 2);
+    sunlight.position.set(0, 75, 0);
+    sun.add(sunlight);
 
     camera.position.x = 0;
-    camera.position.y = 500;
-    camera.position.z = 0;
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
-    // camera.position.y = 100;
-    // camera.position.z = 500;
+    camera.position.y = 350;
+    camera.position.z = 350;
+    camera.lookAt(new THREE.Vector3(0, -100, 0));
+    
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
+    controls.maxPolarAngle = Math.PI / 2 - 0.1;
+    controls.update();
 }
  
 function animate() {
     requestAnimationFrame(animate);
- 
-    // earth.rotation.x += 0.01;
-    // earth.rotation.y += 0.02;
+
     const vector = new THREE.Vector3(0, 75, 0);
     rotateAboutPoint(sun, vector, vector.normalize(), 0.02, false);
-    // rotateAboutPoint(sunlight, vector, vector.normalize(), 0.02, false);
+    rotateAboutPoint(moon, vector, vector.normalize(), 0.02, false);
+
+    controls.update();
 
     renderer.render(scene, camera);
 }
