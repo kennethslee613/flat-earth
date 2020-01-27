@@ -6,7 +6,7 @@ animate();
  
 function init() {
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 1000);
+    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 50000);
 
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
