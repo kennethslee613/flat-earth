@@ -19,5 +19,7 @@
   "dependencies": {
     "three": "^0.111.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
 }
